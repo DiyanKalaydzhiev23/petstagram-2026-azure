@@ -1,0 +1,62 @@
+{% load static %}
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <!-- Link to Home Page -->
+            <a href="{% url 'common:home' %}">
+                <img width="50px" src="{% static 'images/free-30-instagram-stories-icons23_122570.png' %}" alt="img1">
+            </a>
+
+            <!-- Link to Home Page -->
+            <a class="home" href="{% url 'common:home' %}">
+                <i>Petstagram</i>
+            </a>
+        </div>
+
+        <div class="nav-links">
+            <ul class="nav-group">
+                <li class="nav-item">
+
+                    <!-- Link to Add Pet Page -->
+                    <a href="{% url 'pets:add' %}">
+                        <i>Add Pet</i>
+                    </a>
+                </li>
+                <li class="nav-item">
+
+                    <!-- Link to Add Photo Page -->
+                    <a href="{% url 'photos:add' %}">
+                        <i>Add Photo</i>
+                    </a>
+                </li>
+                {% if request.user.is_authenticated %}
+                    <li class="nav-item">
+                        <!-- Link to Profile Page -->
+                        <a href="{% url 'accounts:details' request.user.pk %}">
+                            <i>Profile</i>
+                        </a>
+                    </li>
+                    <form action="{% url 'accounts:logout' %}" method="post">
+                        {% csrf_token %}
+                        <button class="button"><i>Logout</i></button>
+                    </form>
+                {% else %}
+                    <li class="nav-item">
+    
+                        <!-- Link to Login Page -->
+                        <a href="{% url 'accounts:login' %}">
+                            <i>Login</i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+    
+                        <!-- Link to Register Page -->
+                        <a href="{% url 'accounts:register' %}">
+                            <i>Register</i>
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

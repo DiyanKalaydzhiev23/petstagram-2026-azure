@@ -1,0 +1,19 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+    <!-- Starts Edit Photo Section -->
+    <div class="edit-delete edit-photo">
+        <h2>Edit photo</h2>
+
+        <!-- Starts Edit Photo Form -->
+        <form method="post" enctype="multipart/form-data">
+            {{ form }}
+            {% csrf_token %}
+            <!-- Edit Photo Button -->
+            <button class="edit-btn" type="submit">Edit Photo</button>
+        </form>
+        <!-- End Edit Photo Form -->
+
+    </div>
+    <!-- End Edit Photo Section -->
+{% endblock %}
