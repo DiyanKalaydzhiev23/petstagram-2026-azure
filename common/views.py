@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.db.models import Exists, OuterRef
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, resolve_url
@@ -51,7 +52,7 @@ def add_comment(request: HttpRequest, photo_pk: int) -> HttpResponse:
 
         return redirect(request.META.get('HTTP_REFERER') + f'#{photo_pk}')
 
-
+@login_required
 def like_functionality(request, photo_pk: int) -> HttpResponse:
     like_object = Like.objects.filter(to_photo_id=photo_pk, user=request.user).first()
 
