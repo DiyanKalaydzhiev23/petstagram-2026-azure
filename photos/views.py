@@ -1,4 +1,4 @@
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Exists, OuterRef
 from django.http import HttpRequest, HttpResponse
@@ -12,6 +12,7 @@ from photos.forms import PhotoForm
 from photos.models import Photo
 
 
+@login_required
 def photo_add(request: HttpRequest) -> HttpResponse:
     form = PhotoForm(request.POST or None, request.FILES or None)
 
